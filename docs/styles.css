@@ -387,7 +387,6 @@ img {
 .feature-icon {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-md);
-    display: inline-block;
 }
 
 .feature-title {
@@ -402,9 +401,13 @@ img {
 }
 
 /* ==================== Demo Section ==================== */
+.demo {
+    background: var(--color-bg-primary);
+}
+
 .demo-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: var(--spacing-2xl);
     align-items: start;
 }
@@ -417,37 +420,38 @@ img {
     border: 1px solid var(--color-border);
 }
 
+.demo-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .demo-image-placeholder {
-    aspect-ratio: 16/10;
+    aspect-ratio: 3 / 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
     padding: var(--spacing-3xl);
     text-align: center;
+    background: var(--color-bg-card);
 }
 
 .placeholder-icon {
     color: var(--color-text-tertiary);
-    opacity: 0.5;
+    margin-bottom: var(--spacing-lg);
 }
 
 .placeholder-text {
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
 }
 
 .placeholder-subtext {
     font-size: 0.875rem;
     color: var(--color-text-tertiary);
-}
-
-.demo-image {
-    width: 100%;
-    height: auto;
-    display: block;
 }
 
 .demo-features {
@@ -459,6 +463,16 @@ img {
 .demo-feature {
     display: flex;
     gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: var(--transition-base);
+}
+
+.demo-feature:hover {
+    border-color: var(--color-accent-primary);
+    transform: translateX(4px);
 }
 
 .demo-feature-number {
@@ -470,19 +484,21 @@ img {
     justify-content: center;
     background: var(--color-accent-gradient);
     color: white;
+    border-radius: 50%;
     font-weight: 700;
-    border-radius: var(--radius-md);
+    font-size: 1.125rem;
 }
 
 .demo-feature-content h4 {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
 }
 
 .demo-feature-content p {
-    color: var(--color-text-secondary);
     font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
 }
 
 /* ==================== Workflow Section ==================== */
@@ -498,7 +514,7 @@ img {
 
 .workflow-step {
     display: grid;
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: auto 1fr;
     gap: var(--spacing-xl);
     padding: var(--spacing-xl);
     background: var(--color-bg-card);
@@ -509,40 +525,53 @@ img {
 
 .workflow-step:hover {
     border-color: var(--color-accent-primary);
+    box-shadow: var(--shadow-md);
 }
 
 .workflow-step-number {
-    font-size: 3rem;
-    font-weight: 900;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--color-accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
+    color: white;
+    border-radius: var(--radius-lg);
+    font-size: 1.5rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.workflow-step-content {
+    min-width: 0; /* Allows content to shrink properly */
 }
 
 .workflow-step-title {
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
 }
 
 .workflow-step-description {
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-md);
     line-height: 1.7;
+    margin-bottom: var(--spacing-lg);
 }
 
 .workflow-step-code {
-    margin-bottom: var(--spacing-md);
-}
-
-.workflow-step-code pre {
+    position: relative;
     background: var(--color-bg-primary);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    overflow: hidden;
+}
+
+.workflow-step-code pre {
     padding: var(--spacing-md);
+    margin: 0;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .workflow-step-code code {
@@ -550,6 +579,9 @@ img {
     font-size: 0.875rem;
     color: var(--color-text-primary);
     line-height: 1.6;
+    display: block;
+    word-wrap: break-word;
+    white-space: pre;
 }
 
 .workflow-step-tags {
@@ -559,22 +591,24 @@ img {
 }
 
 .tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
+    padding: 0.375rem 0.75rem;
     background: rgba(99, 102, 241, 0.1);
     border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: 9999px;
+    color: var(--color-accent-primary);
+    border-radius: var(--radius-sm);
     font-size: 0.8125rem;
     font-weight: 500;
-    color: var(--color-accent-primary);
 }
 
 /* ==================== Architecture Section ==================== */
+.architecture {
+    background: var(--color-bg-primary);
+}
+
 .architecture-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-3xl);
 }
 
 .architecture-card {
@@ -600,109 +634,116 @@ img {
     flex-wrap: wrap;
 }
 
+.architecture-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
 .arch-node {
-    background: var(--color-bg-tertiary);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
     min-width: 120px;
+    padding: var(--spacing-md);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     text-align: center;
+    transition: var(--transition-base);
+    flex-shrink: 0;
+}
+
+.arch-node:hover {
+    border-color: var(--color-accent-primary);
+    transform: scale(1.05);
 }
 
 .arch-node.highlight {
-    background: rgba(99, 102, 241, 0.1);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
     border-color: var(--color-accent-primary);
 }
 
 .arch-node-title {
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     margin-bottom: var(--spacing-xs);
 }
 
 .arch-node-desc {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     color: var(--color-text-tertiary);
 }
 
 .arch-arrow {
-    color: var(--color-accent-primary);
+    color: var(--color-text-tertiary);
     font-size: 1.5rem;
-    font-weight: 700;
+    flex-shrink: 0;
 }
 
 .arch-arrow-down {
-    color: var(--color-accent-primary);
-    font-size: 2rem;
-    font-weight: 700;
+    color: var(--color-text-tertiary);
+    font-size: 1.5rem;
 }
 
-.architecture-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-
+/* ==================== Tech Stack Section ==================== */
 .tech-stack {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
-}
-
-.tech-stack-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-lg);
-    text-align: center;
+    background: var(--color-bg-secondary);
 }
 
 .tech-stack-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
 }
 
 .tech-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-md);
-    background: var(--color-bg-tertiary);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    transition: var(--transition-fast);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: var(--transition-base);
 }
 
 .tech-item:hover {
     border-color: var(--color-accent-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.tech-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
 }
 
 .tech-name {
-    font-weight: 600;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
 }
 
-.tech-version {
-    font-size: 0.875rem;
-    color: var(--color-text-tertiary);
+.tech-description {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
 }
 
 /* ==================== Getting Started Section ==================== */
 .getting-started {
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-primary);
 }
 
 .getting-started-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: var(--spacing-2xl);
+    align-items: start;
 }
 
 .installation-steps {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
 }
 
 .install-step {
@@ -710,6 +751,12 @@ img {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
     padding: var(--spacing-xl);
+    transition: var(--transition-base);
+}
+
+.install-step:hover {
+    border-color: var(--color-accent-primary);
+    box-shadow: var(--shadow-md);
 }
 
 .install-step-header {
@@ -720,7 +767,6 @@ img {
 }
 
 .install-step-number {
-    flex-shrink: 0;
     width: 40px;
     height: 40px;
     display: flex;
@@ -728,8 +774,10 @@ img {
     justify-content: center;
     background: var(--color-accent-gradient);
     color: white;
+    border-radius: 50%;
     font-weight: 700;
-    border-radius: var(--radius-md);
+    font-size: 1.125rem;
+    flex-shrink: 0;
 }
 
 .install-step-title {
@@ -739,7 +787,7 @@ img {
 
 .install-step-description {
     color: var(--color-text-secondary);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 .install-step-description a {
@@ -757,7 +805,9 @@ img {
 
 .code-block pre {
     padding: var(--spacing-md);
+    margin: 0;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .code-block code {
@@ -765,6 +815,9 @@ img {
     font-size: 0.875rem;
     color: var(--color-text-primary);
     line-height: 1.6;
+    display: block;
+    word-wrap: break-word;
+    white-space: pre;
 }
 
 .copy-button {
@@ -1032,12 +1085,7 @@ img {
 
 /* ==================== Responsive Design ==================== */
 
-/* Responsive logo */
-@media (max-width: 768px) {
-    .logo-image {
-        max-width: 200px;
-    }
-}
+/* Tablets and smaller desktops */
 @media (max-width: 1024px) {
     .demo-content,
     .getting-started-content {
@@ -1053,6 +1101,7 @@ img {
     }
 }
 
+/* Tablets */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -1091,6 +1140,18 @@ img {
     .workflow-step-number {
         margin: 0 auto;
     }
+
+    .workflow-step-content {
+        text-align: left;
+    }
+
+    /* Better code block handling on tablets */
+    .workflow-step-code code,
+    .code-block code {
+        font-size: 0.75rem;
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
     
     .footer-content {
         grid-template-columns: 1fr;
@@ -1103,8 +1164,36 @@ img {
     .requirements-card {
         position: static;
     }
+
+    /* Architecture improvements */
+    .architecture-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .architecture-diagram {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .arch-node {
+        min-width: 100px;
+        padding: var(--spacing-sm) var(--spacing-xs);
+    }
+
+    .arch-node-title {
+        font-size: 0.75rem;
+    }
+
+    .arch-node-desc {
+        font-size: 0.625rem;
+    }
+
+    .logo-image {
+        max-width: 200px;
+    }
 }
 
+/* Mobile phones */
 @media (max-width: 480px) {
     .container {
         padding: 0 var(--spacing-md);
@@ -1117,13 +1206,92 @@ img {
     .section {
         padding: var(--spacing-2xl) 0;
     }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
     
     .demo-image-placeholder {
         padding: var(--spacing-xl);
     }
     
-    .arch-node {
-        min-width: 100px;
+    /* Better responsive code blocks on mobile */
+    .workflow-step-code,
+    .code-block {
+        border-radius: var(--radius-sm);
+    }
+
+    .workflow-step-code pre,
+    .code-block pre {
         padding: var(--spacing-sm);
+    }
+
+    .workflow-step-code code,
+    .code-block code {
+        font-size: 0.7rem;
+        word-break: break-all;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+    }
+
+    .copy-button {
+        position: static;
+        width: 100%;
+        margin-top: var(--spacing-sm);
+        justify-content: center;
+    }
+
+    /* Smaller buttons on mobile */
+    .btn-large {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9375rem;
+    }
+
+    /* Architecture node improvements for mobile */
+    .arch-node {
+        min-width: 80px;
+        padding: var(--spacing-xs);
+    }
+
+    .arch-node-title {
+        font-size: 0.625rem;
+    }
+
+    .arch-node-desc {
+        font-size: 0.5625rem;
+    }
+
+    .arch-arrow {
+        font-size: 1.25rem;
+    }
+
+    /* Workflow adjustments */
+    .workflow-step {
+        padding: var(--spacing-md);
+    }
+
+    .workflow-step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    .workflow-step-title {
+        font-size: 1.25rem;
+    }
+
+    /* Install steps improvements */
+    .install-step {
+        padding: var(--spacing-md);
+    }
+
+    .install-step-number {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .install-step-title {
+        font-size: 1.125rem;
     }
 }

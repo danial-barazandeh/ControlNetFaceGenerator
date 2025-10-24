@@ -134,55 +134,55 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Precise Feature Control</h3>
+                    <h3 class="feature-title">Parametric Control</h3>
                     <p class="feature-description">
-                        Manipulate 8 distinct facial features independently: eyebrows, eyes, nose, lips, and hair. 
-                        Each feature can be positioned, scaled, and adjusted with pixel-perfect precision.
+                        Independently control 8 distinct facial features including eyes, nose, mouth, 
+                        hair, and more. Adjust position, scale, and composition for complete creative freedom.
                     </p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3 class="feature-title">Real-time Generation</h3>
+                    <div class="feature-icon">🧩</div>
+                    <h3 class="feature-title">Feature Composition</h3>
                     <p class="feature-description">
-                        Interactive GUI with instant visual feedback. See your changes in real-time as you compose 
-                        and adjust facial features with intuitive sliders and controls.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3 class="feature-title">Parametric Design</h3>
-                    <p class="feature-description">
-                        Full parametric control over position (X/Y offset), scale (0.1-3.0×), and aspect ratio 
-                        (0.2-2.0) for each facial feature. Create endless variations.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3 class="feature-title">Production Ready</h3>
-                    <p class="feature-description">
-                        Built on Stable Diffusion v1.5 with proven ControlNet architecture. Includes complete 
-                        training pipeline with validation, checkpointing, and monitoring.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">BiSeNet Integration</h3>
-                    <p class="feature-description">
-                        Automatic facial segmentation using BiSeNet. Generate high-quality semantic masks from 
-                        any face dataset with pre-trained ResNet34 model.
+                        Mix and match features from different faces in your dataset. Create entirely 
+                        new, synthetic faces with precise control over each component.
                     </p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Optimized Training</h3>
+                    <h3 class="feature-title">Real-time Preview</h3>
                     <p class="feature-description">
-                        Memory-efficient training with gradient checkpointing, 8-bit Adam, mixed precision (fp16), 
-                        and EMA for stable convergence on consumer GPUs.
+                        See immediate visual feedback as you compose masks. The intuitive GUI provides 
+                        instant preview of your feature selections before generation.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Semantic Segmentation</h3>
+                    <p class="feature-description">
+                        Leverages BiSeNet for accurate facial parsing. Automatically segments faces 
+                        into 19 regions, enabling precise feature extraction and manipulation.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Customizable Training</h3>
+                    <p class="feature-description">
+                        Train on your own face datasets. Full control over training parameters, 
+                        validation, and checkpoint management with accelerate support.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Interactive GUI</h3>
+                    <p class="feature-description">
+                        User-friendly Gradio interface for seamless face generation. Browse feature 
+                        galleries, compose masks, and adjust generation parameters effortlessly.
                     </p>
                 </div>
             </div>
@@ -193,8 +193,8 @@
     <section id="demo" class="section demo">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Interactive GUI</h2>
-                <p class="section-subtitle">Intuitive interface for composing and generating faces</p>
+                <h2 class="section-title">Interactive Demo</h2>
+                <p class="section-subtitle">Experience the power of parametric face generation</p>
             </div>
             
             <div class="demo-content">
@@ -386,77 +386,107 @@
                     <h3 class="architecture-title">Inference Pipeline</h3>
                     <div class="architecture-diagram">
                         <div class="arch-node">
-                            <div class="arch-node-title">User Selection</div>
-                            <div class="arch-node-desc">8 Features</div>
+                            <div class="arch-node-title">Feature Masks</div>
+                            <div class="arch-node-desc">8 Channels</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node highlight">
+                            <div class="arch-node-title">ControlNet</div>
+                            <div class="arch-node-desc">Trained</div>
                         </div>
                         <div class="arch-arrow">→</div>
                         <div class="arch-node">
-                            <div class="arch-node-title">Transform</div>
-                            <div class="arch-node-desc">Scale/Position</div>
-                        </div>
-                        <div class="arch-arrow">→</div>
-                        <div class="arch-node">
-                            <div class="arch-node-title">8-Ch Control</div>
-                            <div class="arch-node-desc">Tensor</div>
+                            <div class="arch-node-title">Conditioning</div>
+                            <div class="arch-node-desc">Guidance</div>
                         </div>
                     </div>
                     <div class="architecture-diagram">
                         <div class="arch-node">
-                            <div class="arch-node-title">Random Noise</div>
-                            <div class="arch-node-desc">Latent</div>
-                        </div>
-                        <div class="arch-arrow">→</div>
-                        <div class="arch-node highlight">
-                            <div class="arch-node-title">ControlNet + UNet</div>
-                            <div class="arch-node-desc">Denoising</div>
+                            <div class="arch-node-title">Text Prompt</div>
+                            <div class="arch-node-desc">Optional</div>
                         </div>
                         <div class="arch-arrow">→</div>
                         <div class="arch-node">
-                            <div class="arch-node-title">Clean Latents</div>
-                            <div class="arch-node-desc">Result</div>
+                            <div class="arch-node-title">CLIP Text</div>
+                            <div class="arch-node-desc">Encoder</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Text Embed</div>
+                            <div class="arch-node-desc">Context</div>
                         </div>
                     </div>
                     <div class="architecture-center">
                         <div class="arch-node">
-                            <div class="arch-node-title">VAE Decoder</div>
-                            <div class="arch-node-desc">Frozen</div>
+                            <div class="arch-node-title">UNet Denoising</div>
+                            <div class="arch-node-desc">DDPM</div>
                         </div>
                         <div class="arch-arrow-down">↓</div>
                         <div class="arch-node">
-                            <div class="arch-node-title">Generated Face</div>
+                            <div class="arch-node-title">VAE Decoder</div>
                             <div class="arch-node-desc">512×512</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="section tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technology Stack</h2>
+                <p class="section-subtitle">Built with industry-standard tools and frameworks</p>
+            </div>
             
-            <div class="tech-stack">
-                <h3 class="tech-stack-title">Technology Stack</h3>
-                <div class="tech-stack-grid">
-                    <div class="tech-item">
-                        <span class="tech-name">Stable Diffusion</span>
-                        <span class="tech-version">v1.5</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-name">ControlNet</span>
-                        <span class="tech-version">8-channel</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-name">BiSeNet</span>
-                        <span class="tech-version">ResNet34</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-name">PyTorch</span>
-                        <span class="tech-version">2.0+</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-name">Diffusers</span>
-                        <span class="tech-version">HuggingFace</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-name">Gradio</span>
-                        <span class="tech-version">Interface</span>
-                    </div>
+            <div class="tech-stack-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🔥</div>
+                    <h4 class="tech-name">PyTorch</h4>
+                    <p class="tech-description">Deep learning framework for model training and inference</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <h4 class="tech-name">Stable Diffusion</h4>
+                    <p class="tech-description">Foundation model for high-quality image generation</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🎮</div>
+                    <h4 class="tech-name">ControlNet</h4>
+                    <p class="tech-description">Conditional control for precise guidance during generation</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🧠</div>
+                    <h4 class="tech-name">BiSeNet</h4>
+                    <p class="tech-description">Face parsing model for semantic segmentation</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <h4 class="tech-name">Accelerate</h4>
+                    <p class="tech-description">Distributed training with multi-GPU support</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🖥️</div>
+                    <h4 class="tech-name">Gradio</h4>
+                    <p class="tech-description">Interactive web interface for user-friendly interaction</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🤗</div>
+                    <h4 class="tech-name">Diffusers</h4>
+                    <p class="tech-description">HuggingFace library for diffusion model pipelines</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">📦</div>
+                    <h4 class="tech-name">Transformers</h4>
+                    <p class="tech-description">Text encoding with CLIP for prompt conditioning</p>
                 </div>
             </div>
         </div>
