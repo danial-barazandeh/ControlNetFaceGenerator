@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ControlNet Face Generator - AI-powered parametric face generation using semantic segmentation masks">
+    <meta name="keywords" content="AI, ControlNet, Face Generation, Stable Diffusion, Machine Learning, BiSeNet">
+    <meta name="author" content="Your Name">
+    
+    <title>ControlNet Face Generator | AI-Powered Parametric Face Generation</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <span class="logo-icon">🎨</span>
+                    <span class="logo-text">ControlNet Face Generator</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#demo" class="nav-link">Demo</a>
+                    <a href="#workflow" class="nav-link">How It Works</a>
+                    <a href="#getting-started" class="nav-link">Get Started</a>
+                    <a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator" target="_blank" class="btn btn-primary">
+                        <svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">🚀 Open Source • Powered by Stable Diffusion & ControlNet</span>
+                </div>
+                <h1 class="hero-title">
+                    Parametric Face Generation<br/>
+                    <span class="gradient-text">With Precise Feature Control</span>
+                </h1>
+                <p class="hero-description">
+                    A powerful ControlNet-based system that enables precise control over individual facial features 
+                    during face generation. Create entirely new synthetic faces by composing and manipulating 
+                    8 distinct facial components with parametric control over position, scale, and composition.
+                </p>
+                <p class="hero-description">
+                    
+                </p>
+                <div class="hero-buttons">
+                    <a href="#getting-started" class="btn btn-large btn-primary">
+                        Get Started
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#demo" class="btn btn-large btn-secondary">
+                        View Demo
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Facial Features</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">512×512</div>
+                        <div class="stat-label">Resolution</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">Real-time</div>
+                        <div class="stat-label">Generation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="academic-context" class="section academic-context">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Built for Education</h2>
+                <p class="section-subtitle">
+                    This project serves as a comprehensive template for bachelor students at the 
+                    <strong>University of Bremen</strong>, where I supervise their theses. It provides 
+                    a solid foundation for students to explore parametric face generation, test hypotheses, 
+                    and build upon established best practices.
+                </p>
+                <p class="section-subtitle" style="margin-top: var(--spacing-md);">
+                    While designed for educational purposes, everyone is welcome to use, learn from, 
+                    and contribute to this project.
+                </p>
+                <div class="logo-container">    
+                    <img src="./images/UHB_Logo_Web_negativ.png" alt="University of Bremen Logo" class="logo-image">
+                </div>
+            </div>
+        </div>
+    </section>   
+    <!-- Features Section -->
+    <section id="features" class="section features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need for precise face generation</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Precise Feature Control</h3>
+                    <p class="feature-description">
+                        Manipulate 8 distinct facial features independently: eyebrows, eyes, nose, lips, and hair. 
+                        Each feature can be positioned, scaled, and adjusted with pixel-perfect precision.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Real-time Generation</h3>
+                    <p class="feature-description">
+                        Interactive GUI with instant visual feedback. See your changes in real-time as you compose 
+                        and adjust facial features with intuitive sliders and controls.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Parametric Design</h3>
+                    <p class="feature-description">
+                        Full parametric control over position (X/Y offset), scale (0.1-3.0×), and aspect ratio 
+                        (0.2-2.0) for each facial feature. Create endless variations.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Production Ready</h3>
+                    <p class="feature-description">
+                        Built on Stable Diffusion v1.5 with proven ControlNet architecture. Includes complete 
+                        training pipeline with validation, checkpointing, and monitoring.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">BiSeNet Integration</h3>
+                    <p class="feature-description">
+                        Automatic facial segmentation using BiSeNet. Generate high-quality semantic masks from 
+                        any face dataset with pre-trained ResNet34 model.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Optimized Training</h3>
+                    <p class="feature-description">
+                        Memory-efficient training with gradient checkpointing, 8-bit Adam, mixed precision (fp16), 
+                        and EMA for stable convergence on consumer GPUs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="section demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Interactive GUI</h2>
+                <p class="section-subtitle">Intuitive interface for composing and generating faces</p>
+            </div>
+            
+            <div class="demo-content">
+                <div class="demo-image-container">
+                    <!-- Replace with your actual GUI screenshot -->
+                    <!-- <div class="demo-image-placeholder">
+                        <svg class="placeholder-icon" width="120" height="120" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                        </svg>
+                        <p class="placeholder-text">Place your GUI screenshot here</p>
+                        <p class="placeholder-subtext">Recommended size: 1200×800px or higher</p>
+                    </div> -->
+                    <img src="./images/gui.png" alt="ControlNet Face Generator GUI" class="demo-image">
+                </div>
+                
+                <div class="demo-features">
+                    <div class="demo-feature">
+                        <div class="demo-feature-number">1</div>
+                        <div class="demo-feature-content">
+                            <h4>Dataset Loading</h4>
+                            <p>Scan and index facial feature masks from your dataset</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-feature">
+                        <div class="demo-feature-number">2</div>
+                        <div class="demo-feature-content">
+                            <h4>Feature Selection</h4>
+                            <p>Browse galleries and select features for each facial component</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-feature">
+                        <div class="demo-feature-number">3</div>
+                        <div class="demo-feature-content">
+                            <h4>Composition Canvas</h4>
+                            <p>Real-time preview of combined masks before generation</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-feature">
+                        <div class="demo-feature-number">4</div>
+                        <div class="demo-feature-content">
+                            <h4>Generation Controls</h4>
+                            <p>Adjust seed, steps, and ControlNet scale for perfect results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="section workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">From face images to generated faces in three simple steps</p>
+            </div>
+            
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="workflow-step-number">01</div>
+                    <div class="workflow-step-content">
+                        <h3 class="workflow-step-title">Prepare Dataset</h3>
+                        <p class="workflow-step-description">
+                            Use BiSeNet face parsing to generate semantic segmentation masks from your face images. 
+                            The model automatically segments 19 facial regions, from which 8 features are selected.
+                        </p>
+                        <div class="workflow-step-code">
+                            <pre><code>python inference.py \
+  --model resnet34 \
+  --weight ./resnet34.pt \
+  --input ./faces \
+  --output ./dataset/output/resnet34</code></pre>
+                        </div>
+                        <div class="workflow-step-tags">
+                            <span class="tag">BiSeNet</span>
+                            <span class="tag">ResNet34</span>
+                            <span class="tag">Segmentation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="workflow-step-number">02</div>
+                    <div class="workflow-step-content">
+                        <h3 class="workflow-step-title">Train ControlNet</h3>
+                        <p class="workflow-step-description">
+                            Fine-tune a ControlNet model on your face-mask pairs. The training script automatically 
+                            handles multi-channel mask stacking, validation, and checkpoint management.
+                        </p>
+                        <div class="workflow-step-code">
+                            <pre><code>accelerate launch train.py \
+  --data_root ./dataset \
+  --output_dir ./trained_model \
+  --batch_size 4 \
+  --max_steps 50000</code></pre>
+                        </div>
+                        <div class="workflow-step-tags">
+                            <span class="tag">Stable Diffusion</span>
+                            <span class="tag">ControlNet</span>
+                            <span class="tag">PyTorch</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="workflow-step-number">03</div>
+                    <div class="workflow-step-content">
+                        <h3 class="workflow-step-title">Generate Faces</h3>
+                        <p class="workflow-step-description">
+                            Launch the interactive GUI to compose and generate new faces. Select features, adjust 
+                            parameters, and see results in real-time with instant visual feedback.
+                        </p>
+                        <div class="workflow-step-code">
+                            <pre><code>python face-mask/gui-inference.py \
+  --controlnet_dir ./trained_model/final_model \
+  --share</code></pre>
+                        </div>
+                        <div class="workflow-step-tags">
+                            <span class="tag">Gradio</span>
+                            <span class="tag">Real-time</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="section architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Architecture</h2>
+                <p class="section-subtitle">Built on proven diffusion model technology</p>
+            </div>
+            
+            <div class="architecture-grid">
+                <div class="architecture-card">
+                    <h3 class="architecture-title">Training Pipeline</h3>
+                    <div class="architecture-diagram">
+                        <div class="arch-node">
+                            <div class="arch-node-title">Face RGB</div>
+                            <div class="arch-node-desc">512×512</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">VAE Encoder</div>
+                            <div class="arch-node-desc">Frozen</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Latents</div>
+                            <div class="arch-node-desc">4×64×64</div>
+                        </div>
+                    </div>
+                    <div class="architecture-diagram">
+                        <div class="arch-node">
+                            <div class="arch-node-title">8-Ch Masks</div>
+                            <div class="arch-node-desc">Features</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node highlight">
+                            <div class="arch-node-title">ControlNet</div>
+                            <div class="arch-node-desc">Trainable</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Conditioning</div>
+                            <div class="arch-node-desc">Features</div>
+                        </div>
+                    </div>
+                    <div class="architecture-center">
+                        <div class="arch-node">
+                            <div class="arch-node-title">UNet + Noise</div>
+                            <div class="arch-node-desc">DDPM</div>
+                        </div>
+                        <div class="arch-arrow-down">↓</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">MSE Loss</div>
+                            <div class="arch-node-desc">Optimize</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="architecture-card">
+                    <h3 class="architecture-title">Inference Pipeline</h3>
+                    <div class="architecture-diagram">
+                        <div class="arch-node">
+                            <div class="arch-node-title">User Selection</div>
+                            <div class="arch-node-desc">8 Features</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Transform</div>
+                            <div class="arch-node-desc">Scale/Position</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">8-Ch Control</div>
+                            <div class="arch-node-desc">Tensor</div>
+                        </div>
+                    </div>
+                    <div class="architecture-diagram">
+                        <div class="arch-node">
+                            <div class="arch-node-title">Random Noise</div>
+                            <div class="arch-node-desc">Latent</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node highlight">
+                            <div class="arch-node-title">ControlNet + UNet</div>
+                            <div class="arch-node-desc">Denoising</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Clean Latents</div>
+                            <div class="arch-node-desc">Result</div>
+                        </div>
+                    </div>
+                    <div class="architecture-center">
+                        <div class="arch-node">
+                            <div class="arch-node-title">VAE Decoder</div>
+                            <div class="arch-node-desc">Frozen</div>
+                        </div>
+                        <div class="arch-arrow-down">↓</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Generated Face</div>
+                            <div class="arch-node-desc">512×512</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <h3 class="tech-stack-title">Technology Stack</h3>
+                <div class="tech-stack-grid">
+                    <div class="tech-item">
+                        <span class="tech-name">Stable Diffusion</span>
+                        <span class="tech-version">v1.5</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-name">ControlNet</span>
+                        <span class="tech-version">8-channel</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-name">BiSeNet</span>
+                        <span class="tech-version">ResNet34</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-name">PyTorch</span>
+                        <span class="tech-version">2.0+</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-name">Diffusers</span>
+                        <span class="tech-version">HuggingFace</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-name">Gradio</span>
+                        <span class="tech-version">Interface</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section id="getting-started" class="section getting-started">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get Started</h2>
+                <p class="section-subtitle">Start generating faces in minutes</p>
+            </div>
+            
+            <div class="getting-started-content">
+                <div class="installation-steps">
+                    <div class="install-step">
+                        <div class="install-step-header">
+                            <span class="install-step-number">1</span>
+                            <h3 class="install-step-title">Clone Repository</h3>
+                        </div>
+                        <div class="code-block">
+                            <pre><code>git clone https://github.com/danial-barazandeh/ControlNetFaceGenerator.git
+cd controlnet-face-generator</code></pre>
+                            <button class="copy-button" onclick="copyCode(this)">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="install-step">
+                        <div class="install-step-header">
+                            <span class="install-step-number">2</span>
+                            <h3 class="install-step-title">Install Dependencies</h3>
+                        </div>
+                        <div class="code-block">
+                            <pre><code>pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+pip install diffusers transformers accelerate safetensors
+pip install gradio opencv-python pillow matplotlib tqdm</code></pre>
+                            <button class="copy-button" onclick="copyCode(this)">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="install-step">
+                        <div class="install-step-header">
+                            <span class="install-step-number">3</span>
+                            <h3 class="install-step-title">Prepare Dataset & Train</h3>
+                        </div>
+                        <p class="install-step-description">
+                            Follow the detailed instructions in the 
+                            <a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator#readme" target="_blank">README</a> 
+                            to generate masks with BiSeNet and train your ControlNet model.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="requirements-card">
+                    <h3 class="requirements-title">Requirements</h3>
+                    <ul class="requirements-list">
+                        <li>
+                            <svg class="req-icon" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Python 3.8+
+                        </li>
+                        <li>
+                            <svg class="req-icon" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            CUDA-capable GPU (8GB+ VRAM)
+                        </li>
+                        <li>
+                            <svg class="req-icon" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            16GB+ VRAM for training
+                        </li>
+                        <li>
+                            <svg class="req-icon" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            Face dataset for training
+                        </li>
+                    </ul>
+                    
+                    <div class="requirements-note">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                        </svg>
+                        For inference only, 8GB VRAM is sufficient
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Start Generating?</h2>
+                <p class="cta-description">
+                    Join the community and start creating parametric faces with precise control
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator" target="_blank" class="btn btn-large btn-primary">
+                        <svg class="github-icon" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                    <a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator#readme" target="_blank" class="btn btn-large btn-secondary">
+                        Read Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">ControlNet Face Generator</h3>
+                    <p class="footer-description">
+                        Open-source parametric face generation with precise feature control
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator" target="_blank" class="social-link" aria-label="GitHub">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Documentation</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator#installation">Installation</a></li>
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator#training">Training Guide</a></li>
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator#interface">GUI Reference</a></li>
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://arxiv.org/abs/2302.05543" target="_blank">ControlNet Paper</a></li>
+                        <li><a href="https://arxiv.org/abs/1808.00897" target="_blank">BiSeNet Paper</a></li>
+                        <li><a href="https://github.com/yakhyo/face-parsing" target="_blank">Face Parsing Repo</a></li>
+                        <li><a href="https://github.com/huggingface/diffusers" target="_blank">Diffusers Library</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-section-title">Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator/issues">Report Issues</a></li>
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator/discussions">Discussions</a></li>
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator/blob/main/CONTRIBUTING.md">Contributing</a></li>
+                        <li><a href="https://github.com/danial-barazandeh/ControlNetFaceGenerator/blob/main/LICENSE">License (MIT)</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2024 ControlNet Face Generator. Open source under MIT License.
+                </p>
+                <p class="footer-credits">
+                    Built with ❤️ by <a href="https://danialbarazandeh.de/"> Danial Barazandeh </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
